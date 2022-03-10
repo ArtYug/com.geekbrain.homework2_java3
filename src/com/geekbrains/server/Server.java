@@ -2,6 +2,7 @@ package com.geekbrains.server;
 
 import com.geekbrains.CommonConstants;
 import com.geekbrains.server.authorization.AuthService;
+import com.geekbrains.server.authorization.DbAuthService;
 import com.geekbrains.server.authorization.InMemoryAuthServiceImpl;
 
 import java.io.IOException;
@@ -10,21 +11,27 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-// Homework 8 java advanced level
-//         1. Разобраться с кодом.
-//         2. if (messageFromServer.contains("зашел в чат")) { Заменить эту строку на команду /enter,
-//         в случае если сервером была прислана такая команда + никнейм,
-//         нужно отобразить сообщение у других пользователей "Пользователь nickname зашел в чат"
-//         3. *****Отправку сообщений по выбору клиента в списке клиентов
-//         (Приватные сообщения(подкрасить информацию о том,
-//         от какого клиента пришло сообщение и что это сообщение пришло только вам))
-public class Server {
-    private final AuthService authService;
+ /*                     Homework 8 java advanced level
+         1. Разобраться с кодом.
+         2. if (messageFromServer.contains("зашел в чат")) { Заменить эту строку на команду /enter,
+         в случае если сервером была прислана такая команда + никнейм,
+         нужно отобразить сообщение у других пользователей "Пользователь nickname зашел в чат"
+         3. *****Отправку сообщений по выбору клиента в списке клиентов
+         (Приватные сообщения(подкрасить информацию о том,
+         от какого клиента пришло сообщение и что это сообщение пришло только вам))
+                              java 3 homework1
+        1. Добавить в сетевой чат аутентификацию через базу данных SQLite.
+        2. * Добавить в сетевой чат возможность смены ника.*/
 
+public class Server {
+    //    private final AuthService authService;
+    private final DbAuthService authService;
     private List<ClientHandler> connectedUsers;
 
     public Server() {
-        authService = new InMemoryAuthServiceImpl();
+//        authService = new InMemoryAuthServiceImpl();
+        authService = new DbAuthService();
+        this.authService.connection();
         try (ServerSocket server = new ServerSocket(CommonConstants.SERVER_PORT)) {
             authService.start();
             connectedUsers = new ArrayList<>();
@@ -37,10 +44,11 @@ public class Server {
         } catch (IOException exception) {
             System.out.println("Ошибка в работе сервера");
             exception.printStackTrace();
-        } finally {
-            if (authService != null) {
-                authService.end();
-            }
+//        } finally {
+//            if (authService != null) {
+//                authService.end();
+//            }
+//        }
         }
     }
 
@@ -70,13 +78,11 @@ public class Server {
     public synchronized void disconnectUser(ClientHandler handler) {
         connectedUsers.remove(handler);
     }
-
     public String getClients() {
         StringBuilder builder = new StringBuilder("/clients ");
         for (ClientHandler user : connectedUsers) {
             builder.append(user.getNickName()).append("\n");
         }
-
         return builder.toString();
     }
 }
