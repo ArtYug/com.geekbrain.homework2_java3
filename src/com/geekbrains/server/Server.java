@@ -44,11 +44,11 @@ public class Server {
         } catch (IOException exception) {
             System.out.println("Ошибка в работе сервера");
             exception.printStackTrace();
-//        } finally {
-//            if (authService != null) {
-//                authService.end();
-//            }
-//        }
+       /* } finally {
+            if (authService != null) {
+                authService.end();
+            }
+        }*/
         }
     }
 

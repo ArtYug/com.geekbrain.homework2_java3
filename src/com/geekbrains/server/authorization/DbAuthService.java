@@ -18,6 +18,28 @@ public class DbAuthService implements AuthService {
         }
     }
 
+    @Override
+    public void start() {
+
+    }
+
+    @Override
+    public String getNickNameByLoginAndPassword(String login, String password) {
+        try (ResultSet resultSet = statement.executeQuery("select nickname from users where password = '" + password + "';")) {
+            if (resultSet.next()) {
+                return resultSet.getString("nickname");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void end() {
+
+    }
+
     public void disconnect() {
         try {
             if (statement != null) {
@@ -37,25 +59,4 @@ public class DbAuthService implements AuthService {
 
     }
 
-    @Override
-    public void start() {
-
-    }
-
-    @Override
-    public String getNickNameByLoginAndPassword(String login, String password) {
-        try (ResultSet resultSet = statement.executeQuery("select nickname from users where password = '" + password +"';" )){
-        if (resultSet.next()){
-           return resultSet.getString("nickname");
-        }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public void end() {
-
-    }
 }
