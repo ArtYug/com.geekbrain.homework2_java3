@@ -21,9 +21,10 @@ public class MainClient extends Application {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent windowEvent) {
-                chatController.close();
+
                 Platform.exit();
                 System.exit(0);
+                chatController.close();
             }
         });
     }

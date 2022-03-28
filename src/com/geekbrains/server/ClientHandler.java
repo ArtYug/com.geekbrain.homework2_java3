@@ -1,8 +1,6 @@
 package com.geekbrains.server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 
 public class ClientHandler {
@@ -10,7 +8,6 @@ public class ClientHandler {
     private final Socket socket;
     private final DataInputStream inputStream;
     private final DataOutputStream outputStream;
-
     private String nickName;
 
     public String getNickName() {
@@ -76,8 +73,8 @@ public class ClientHandler {
                 closeConnection();
                 return;
             }
-
             server.broadcastMessage(nickName + ": " + messageInChat);
+            writeFileHistory(nickName + " :" + messageInChat);
         }
     }
 
@@ -86,6 +83,14 @@ public class ClientHandler {
             outputStream.writeUTF(message);
         } catch (IOException exception) {
             exception.printStackTrace();
+        }
+    }
+
+    public void writeFileHistory(String message) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("history.txt", true))) {
+            bufferedWriter.write(message + System.getProperty("line.separator"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

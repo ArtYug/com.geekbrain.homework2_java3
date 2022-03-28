@@ -56,7 +56,5 @@ public class DbAuthService implements AuthService {
                 e.printStackTrace();
             }
         }
-
     }
-
 }

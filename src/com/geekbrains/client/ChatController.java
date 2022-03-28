@@ -74,7 +74,7 @@ public class ChatController implements Initializable {
 
     public void sendAuth(ActionEvent event) {
         boolean authenticated = network.sendAuth(loginField.getText(), passwordField.getText());
-        if(authenticated) {
+        if (authenticated) {
             loginField.clear();
             passwordField.clear();
             setAuthenticated(true);
