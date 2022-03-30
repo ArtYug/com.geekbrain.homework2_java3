@@ -10,6 +10,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
  /*                     Homework 8 java advanced level
          1. Разобраться с кодом.
@@ -27,9 +29,10 @@ public class Server {
     //    private final AuthService authService;
     private final DbAuthService authService;
     private List<ClientHandler> connectedUsers;
-
+    private ExecutorService executorService;
     public Server() {
 //        authService = new InMemoryAuthServiceImpl();
+        executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         authService = new DbAuthService();
         this.authService.connection();
         try (ServerSocket server = new ServerSocket(CommonConstants.SERVER_PORT)) {
@@ -39,7 +42,7 @@ public class Server {
                 System.out.println("Сервер ожидает подключения");
                 Socket socket = server.accept();
                 System.out.println("Клиент подключился");
-                new ClientHandler(this, socket);
+                new ClientHandler(executorService, this, socket);
             }
         } catch (IOException exception) {
             System.out.println("Ошибка в работе сервера");

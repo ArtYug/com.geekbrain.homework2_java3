@@ -2,6 +2,7 @@ package com.geekbrains.server;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
 
 public class ClientHandler {
     private final Server server;
@@ -14,13 +15,13 @@ public class ClientHandler {
         return nickName;
     }
 
-    public ClientHandler(Server server, Socket socket) {
+    public ClientHandler(ExecutorService executorService, Server server, Socket socket) {
         try {
             this.server = server;
             this.socket = socket;
             this.inputStream = new DataInputStream(socket.getInputStream());
             this.outputStream = new DataOutputStream(socket.getOutputStream());
-            new Thread(new Runnable() {
+             executorService.execute(new Runnable(){
                 @Override
                 public void run() {
                     try {
@@ -30,7 +31,7 @@ public class ClientHandler {
                         exception.printStackTrace();
                     }
                 }
-            }).start();
+            });
         } catch (IOException exception) {
             throw new RuntimeException("Проблемы при создании обработчика");
         }

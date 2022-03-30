@@ -25,7 +25,9 @@ public class DbAuthService implements AuthService {
 
     @Override
     public String getNickNameByLoginAndPassword(String login, String password) {
-        try (ResultSet resultSet = statement.executeQuery("select nickname from users where password = '" + password + "';")) {
+       // try (ResultSet resultSet = statement.executeQuery("select nickname from users where  password = '" + password + "';"))
+      String query = String.format("select nickname from users where login = '%s' and password = '%s' ; ",login,password );
+        try (ResultSet resultSet = statement.executeQuery(query)){
             if (resultSet.next()) {
                 return resultSet.getString("nickname");
             }
