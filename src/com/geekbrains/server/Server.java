@@ -1,9 +1,14 @@
 package com.geekbrains.server;
 
 import com.geekbrains.CommonConstants;
+
 import com.geekbrains.server.authorization.AuthService;
 import com.geekbrains.server.authorization.DbAuthService;
 import com.geekbrains.server.authorization.InMemoryAuthServiceImpl;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import sun.rmi.runtime.Log;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -27,9 +32,13 @@ import java.util.concurrent.Executors;
 
 public class Server {
     //    private final AuthService authService;
+    private static final Logger LOGGER = LogManager.getLogger(Server.class);
     private final DbAuthService authService;
-    private List<ClientHandler> connectedUsers;
+    private List<com.geekbrains.server.ClientHandler> connectedUsers;
     private ExecutorService executorService;
+
+
+
     public Server() {
 //        authService = new InMemoryAuthServiceImpl();
         executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
@@ -39,19 +48,22 @@ public class Server {
             authService.start();
             connectedUsers = new ArrayList<>();
             while (true) {
-                System.out.println("Сервер ожидает подключения");
+                //  System.out.println("Сервер ожидает подключения");
+                LOGGER.info("Сервер ожидает подключения");
                 Socket socket = server.accept();
-                System.out.println("Клиент подключился");
+                // System.out.println("Клиент подключился");
+                LOGGER.info("Клиент подключился");
                 new ClientHandler(executorService, this, socket);
             }
         } catch (IOException exception) {
-            System.out.println("Ошибка в работе сервера");
+            // System.out.println("Ошибка в работе сервера");
+            LOGGER.throwing(Level.ERROR, exception);
             exception.printStackTrace();
-       /* } finally {
-            if (authService != null) {
+        } finally {
+/*            if (authService != null) {
                 authService.end();
-            }
-        }*/
+            }*/
+            executorService.shutdown();
         }
     }
 
@@ -71,6 +83,7 @@ public class Server {
     public synchronized void broadcastMessage(String message) {
         for (ClientHandler handler : connectedUsers) {
             handler.sendMessage(message);
+            LOGGER.info(message);
         }
     }
 
@@ -81,6 +94,7 @@ public class Server {
     public synchronized void disconnectUser(ClientHandler handler) {
         connectedUsers.remove(handler);
     }
+
     public String getClients() {
         StringBuilder builder = new StringBuilder("/clients ");
         for (ClientHandler user : connectedUsers) {

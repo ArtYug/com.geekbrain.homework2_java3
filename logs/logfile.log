@@ -1,0 +1,50 @@
+DEBUG 2022-04-06 10:53:21 [main] com.geekbrains.Test.TestForLog (TestForLog.java:9) - Debug
+INFO  2022-04-06 10:53:21 [main] com.geekbrains.Test.TestForLog (TestForLog.java:10) - Info
+WARN  2022-04-06 10:53:21 [main] com.geekbrains.Test.TestForLog (TestForLog.java:11) - Warn
+ERROR 2022-04-06 10:53:21 [main] com.geekbrains.Test.TestForLog (TestForLog.java:12) - Error
+FATAL 2022-04-06 10:53:21 [main] com.geekbrains.Test.TestForLog (TestForLog.java:13) - Fatal
+INFO  2022-04-06 10:53:21 [main] com.geekbrains.Test.TestForLog (TestForLog.java:14) - String: Hello, World.
+INFO  2022-04-06 11:15:52 [main] com.geekbrains.server.Server (Server.java:52) - Сервер ожидает подключения
+INFO  2022-04-06 11:16:04 [main] com.geekbrains.server.Server (Server.java:55) - Клиент подключился
+INFO  2022-04-06 11:16:04 [main] com.geekbrains.server.Server (Server.java:52) - Сервер ожидает подключения
+INFO  2022-04-06 11:17:06 [main] com.geekbrains.server.Server (Server.java:55) - Клиент подключился
+INFO  2022-04-06 11:17:06 [main] com.geekbrains.server.Server (Server.java:52) - Сервер ожидает подключения
+INFO  2022-04-06 11:17:06 [pool-2-thread-2] com.geekbrains.server.Server (Server.java:86) - /enter second_user
+INFO  2022-04-06 11:17:11 [pool-2-thread-1] com.geekbrains.server.Server (Server.java:86) - first_user: assasa
+INFO  2022-04-06 11:17:11 [pool-2-thread-1] com.geekbrains.server.Server (Server.java:86) - first_user: assasa
+INFO  2022-04-06 11:17:11 [pool-2-thread-1] com.geekbrains.server.Server (Server.java:86) - first_user: sasa
+INFO  2022-04-06 11:17:11 [pool-2-thread-1] com.geekbrains.server.Server (Server.java:86) - first_user: sasa
+INFO  2022-04-06 11:17:12 [pool-2-thread-1] com.geekbrains.server.Server (Server.java:86) - first_user: sa
+INFO  2022-04-06 11:17:12 [pool-2-thread-1] com.geekbrains.server.Server (Server.java:86) - first_user: sa
+INFO  2022-04-06 11:17:12 [pool-2-thread-1] com.geekbrains.server.Server (Server.java:86) - first_user: sa
+INFO  2022-04-06 11:17:12 [pool-2-thread-1] com.geekbrains.server.Server (Server.java:86) - first_user: sa
+INFO  2022-04-06 11:17:12 [pool-2-thread-1] com.geekbrains.server.Server (Server.java:86) - first_user: sa
+INFO  2022-04-06 11:17:12 [pool-2-thread-1] com.geekbrains.server.Server (Server.java:86) - first_user: sa
+INFO  2022-04-06 11:17:12 [pool-2-thread-1] com.geekbrains.server.Server (Server.java:86) - first_user: sa
+INFO  2022-04-06 11:17:12 [pool-2-thread-1] com.geekbrains.server.Server (Server.java:86) - first_user: sa
+INFO  2022-04-08 20:23:27 [main] com.geekbrains.server.Server (Server.java:52) - Сервер ожидает подключения
+INFO  2022-04-09 00:58:25 [main] com.geekbrains.server.Server (Server.java:52) - Сервер ожидает подключения
+INFO  2022-04-09 00:58:36 [main] com.geekbrains.server.Server (Server.java:55) - Клиент подключился
+INFO  2022-04-09 00:58:36 [main] com.geekbrains.server.Server (Server.java:52) - Сервер ожидает подключения
+INFO  2022-04-10 21:45:42 [main] com.geekbrains.server.Server (Server.java:52) - Сервер ожидает подключения
+INFO  2022-04-10 21:45:54 [main] com.geekbrains.server.Server (Server.java:55) - Клиент подключился
+INFO  2022-04-10 21:45:54 [main] com.geekbrains.server.Server (Server.java:52) - Сервер ожидает подключения
+INFO  2022-04-10 21:46:19 [main] com.geekbrains.server.Server (Server.java:52) - Сервер ожидает подключения
+INFO  2022-04-10 21:46:31 [main] com.geekbrains.server.Server (Server.java:55) - Клиент подключился
+INFO  2022-04-10 21:46:31 [main] com.geekbrains.server.Server (Server.java:52) - Сервер ожидает подключения
+INFO  2022-04-10 21:46:42 [main] com.geekbrains.server.Server (Server.java:55) - Клиент подключился
+INFO  2022-04-10 21:46:42 [main] com.geekbrains.server.Server (Server.java:52) - Сервер ожидает подключения
+INFO  2022-04-10 21:46:42 [pool-2-thread-2] com.geekbrains.server.Server (Server.java:86) - /enter second_user
+INFO  2022-04-10 21:46:45 [pool-2-thread-2] com.geekbrains.server.Server (Server.java:86) - second_user: sasasa
+INFO  2022-04-10 21:46:45 [pool-2-thread-2] com.geekbrains.server.Server (Server.java:86) - second_user: sasasa
+INFO  2022-04-10 21:46:45 [pool-2-thread-2] com.geekbrains.server.Server (Server.java:86) - second_user: sa
+INFO  2022-04-10 21:46:45 [pool-2-thread-2] com.geekbrains.server.Server (Server.java:86) - second_user: sa
+INFO  2022-04-10 21:46:45 [pool-2-thread-2] com.geekbrains.server.Server (Server.java:86) - second_user: sa
+INFO  2022-04-10 21:46:45 [pool-2-thread-2] com.geekbrains.server.Server (Server.java:86) - second_user: sa
+INFO  2022-04-10 21:46:46 [pool-2-thread-2] com.geekbrains.server.Server (Server.java:86) - second_user: asassa
+INFO  2022-04-10 21:46:46 [pool-2-thread-2] com.geekbrains.server.Server (Server.java:86) - second_user: asassa
+INFO  2022-04-10 21:46:49 [pool-2-thread-2] com.geekbrains.server.Server (Server.java:86) - second_user: assaas
+INFO  2022-04-10 21:46:49 [pool-2-thread-2] com.geekbrains.server.Server (Server.java:86) - second_user: assaas
+INFO  2022-04-10 21:46:52 [pool-2-thread-1] com.geekbrains.server.Server (Server.java:86) - first_user: assasa
+INFO  2022-04-10 21:46:52 [pool-2-thread-1] com.geekbrains.server.Server (Server.java:86) - first_user: assasa
+INFO  2022-04-11 09:14:18 [main] com.geekbrains.server.Server (Server.java:52) - Сервер ожидает подключения
